@@ -58,15 +58,21 @@ class App extends Component {
   };
 
   showAllItems = () => {
-    console.log('showAllItems');
+    console.log(this.state.data);
+    this.setState({ data: this.state.data });
   };
 
   showActiveItems = () => {
-    console.log('showActiveItems');
+    this.setState({
+      data: this.state.data.filter(el => el.important === true),
+    });
   };
 
   showDoneItems = () => {
-    console.log('showActiveItems');
+    const tempData = [...this.state.data];
+    let newData = tempData.filter(el => el.done === true);
+    console.log(tempData);
+    this.setState({ data: newData });
   };
 
   render() {

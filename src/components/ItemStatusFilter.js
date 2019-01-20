@@ -20,7 +20,7 @@ export default class ItemStatusFilter extends Component {
         <button
           type="button"
           className="btn item-status-btn btn-info"
-          onClick={this.btnAllHandler}>
+          onClick={this.props.showAllItems}>
           All
         </button>
         <button
@@ -30,7 +30,8 @@ export default class ItemStatusFilter extends Component {
         </button>
         <button
           type="button"
-          className="btn item-status-btn btn-outline-secondary">
+          className="btn item-status-btn btn-outline-secondary"
+          onClick={this.props.showDoneItems}>
           Done
         </button>
       </div>
