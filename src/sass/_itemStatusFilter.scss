@@ -1,0 +1,8 @@
+.item-status-btn {
+  &:active,
+  &:focus {
+    color: #fff;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+  }
+}
