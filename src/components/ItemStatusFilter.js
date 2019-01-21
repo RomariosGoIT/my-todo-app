@@ -2,38 +2,38 @@ import React, { Component } from 'react';
 
 export default class ItemStatusFilter extends Component {
   state = {
-    stat: 'all',
+    filter: 'all',
+    button: [
+      { name: 'all', isActive: false },
+      { name: 'active', isActive: false },
+      { name: 'done', isActive: false },
+    ],
   };
 
-  btnAllHandler = val => {
+  setFilterValue = val => {
     this.props.setFilterValue(val);
-    this.setState({ stat: val });
+    this.setState({ filter: val });
   };
 
   render() {
-    const styleActive = 'btn btn-outline-secondary active';
-    const styleStd = 'btn btn-outline-secondary';
-
     return (
       <div className="btn-group">
-        <button
-          type="button"
-          className={this.state.stat === 'all' ? styleActive : styleStd}
-          onClick={() => this.btnAllHandler('all')}>
-          All
-        </button>
-        <button
-          type="button"
-          className={this.state.stat === 'active' ? styleActive : styleStd}
-          onClick={() => this.btnAllHandler('active')}>
-          Active
-        </button>
-        <button
-          type="button"
-          className={this.state.stat === 'done' ? styleActive : styleStd}
-          onClick={() => this.btnAllHandler('done')}>
-          Done
-        </button>
+        {this.state.button.map(item => {
+          let { isActive, name } = item;
+          let style = 'btn-outline-secondary';
+          isActive = this.state.filter === name;
+          if (isActive) {
+            style += ' active';
+          }
+          return (
+            <button
+              type="button"
+              className={`btn ${style}`}
+              onClick={() => this.setFilterValue(name)}>
+              {name}
+            </button>
+          );
+        })}
       </div>
     );
   }
