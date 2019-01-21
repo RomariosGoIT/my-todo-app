@@ -4,9 +4,9 @@ export default class ItemStatusFilter extends Component {
   state = {
     filter: 'all',
     button: [
-      { name: 'all', isActive: false },
-      { name: 'active', isActive: false },
-      { name: 'done', isActive: false },
+      { name: 'all', isActive: false, id: 1 },
+      { name: 'active', isActive: false, id: 2 },
+      { name: 'done', isActive: false, id: 3 },
     ],
   };
 
@@ -19,7 +19,7 @@ export default class ItemStatusFilter extends Component {
     return (
       <div className="btn-group">
         {this.state.button.map(item => {
-          let { isActive, name } = item;
+          let { isActive, name, id } = item;
           let style = 'btn-outline-secondary';
           isActive = this.state.filter === name;
           if (isActive) {
@@ -27,6 +27,7 @@ export default class ItemStatusFilter extends Component {
           }
           return (
             <button
+              key={id}
               type="button"
               className={`btn ${style}`}
               onClick={() => this.setFilterValue(name)}>
