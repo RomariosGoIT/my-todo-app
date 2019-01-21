@@ -2,36 +2,36 @@ import React, { Component } from 'react';
 
 export default class ItemStatusFilter extends Component {
   state = {
-    active: false,
+    stat: 'all',
   };
 
-  btnAllHandler = e => {
-    this.setState({ active: !this.state.active });
-    if (this.state.active) {
-      e.target.className = 'btn btn-info';
-    } else {
-      e.target.className = 'btn btn-outline-secondary';
-    }
+  btnAllHandler = val => {
+    this.props.setFilterValue(val);
+    this.setState({ stat: val });
   };
 
   render() {
+    const classNameActive = 'btn btn-outline-secondary active';
+    const className = 'btn btn-outline-secondary';
+
     return (
       <div className="btn-group">
         <button
           type="button"
-          className="btn item-status-btn btn-info"
-          onClick={this.props.showAllItems}>
+          className={this.state.stat === 'all' ? classNameActive : className}
+          onClick={() => this.btnAllHandler('all')}>
           All
         </button>
         <button
           type="button"
-          className="btn item-status-btn btn-outline-secondary">
+          className={this.state.stat === 'active' ? classNameActive : className}
+          onClick={() => this.btnAllHandler('active')}>
           Active
         </button>
         <button
           type="button"
-          className="btn item-status-btn btn-outline-secondary"
-          onClick={this.props.showDoneItems}>
+          className={this.state.stat === 'done' ? classNameActive : className}
+          onClick={() => this.btnAllHandler('done')}>
           Done
         </button>
       </div>
