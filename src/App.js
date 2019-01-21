@@ -53,9 +53,8 @@ class App extends Component {
     this.setState({ data: this.toggleItemProp(id, 'done') });
   };
 
-  setSearchValue = val => {
-    let str = val.toLowerCase();
-    this.setState({ term: str });
+  setSearchValue = str => {
+    this.setState({ term: str.toLowerCase() });
   };
 
   setFilterValue = val => {
@@ -63,21 +62,20 @@ class App extends Component {
   };
 
   searchHandler = (data, val) => {
-    if (val === '') {
-      return data;
-    }
+    if (val === '') return data;
     return data.filter(item => item.label.toLowerCase().indexOf(val) > -1);
   };
 
   filterHandler = (data, filter) => {
-    if (filter === 'all') {
-      return data;
-    } else if (filter === 'done') {
-      return data.filter(el => el.done === true);
-    } else if (filter === 'active') {
-      return data.filter(el => el.done === false);
-    } else {
-      return data;
+    switch (filter) {
+      case 'all':
+        return data;
+      case 'done':
+        return data.filter(el => el.done === true);
+      case 'active':
+        return data.filter(el => el.done === false);
+      default:
+        return data;
     }
   };
 

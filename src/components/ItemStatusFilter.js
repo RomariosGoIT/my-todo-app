@@ -11,26 +11,26 @@ export default class ItemStatusFilter extends Component {
   };
 
   render() {
-    const classNameActive = 'btn btn-outline-secondary active';
-    const className = 'btn btn-outline-secondary';
+    const styleActive = 'btn btn-outline-secondary active';
+    const styleStd = 'btn btn-outline-secondary';
 
     return (
       <div className="btn-group">
         <button
           type="button"
-          className={this.state.stat === 'all' ? classNameActive : className}
+          className={this.state.stat === 'all' ? styleActive : styleStd}
           onClick={() => this.btnAllHandler('all')}>
           All
         </button>
         <button
           type="button"
-          className={this.state.stat === 'active' ? classNameActive : className}
+          className={this.state.stat === 'active' ? styleActive : styleStd}
           onClick={() => this.btnAllHandler('active')}>
           Active
         </button>
         <button
           type="button"
-          className={this.state.stat === 'done' ? classNameActive : className}
+          className={this.state.stat === 'done' ? styleActive : styleStd}
           onClick={() => this.btnAllHandler('done')}>
           Done
         </button>
