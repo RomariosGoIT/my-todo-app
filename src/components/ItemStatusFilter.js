@@ -18,13 +18,9 @@ export default class ItemStatusFilter extends Component {
   render() {
     return (
       <div className="btn-group">
-        {this.state.button.map(item => {
-          let { isActive, name, id } = item;
-          let style = 'btn-outline-secondary';
+        {this.state.button.map(({ isActive, name, id }) => {
           isActive = this.state.filter === name;
-          if (isActive) {
-            style += ' active';
-          }
+          let style = isActive ? ' active' : 'btn-outline-secondary';
           return (
             <button
               key={id}
